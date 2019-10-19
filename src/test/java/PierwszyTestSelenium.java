@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Wait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -39,8 +40,7 @@ public class PierwszyTestSelenium {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
+        
         boolean nieZnaleziono = true;
         while (nieZnaleziono) {
             if (driver.findElement(By.cssSelector("[href='https://pl.wikipedia.org/wiki/Lublin']:first-child")).isDisplayed()) {
@@ -52,9 +52,9 @@ public class PierwszyTestSelenium {
                     e.printStackTrace();
                 }
             }
-
         }
         driver.findElement(By.cssSelector("[href='https://pl.wikipedia.org/wiki/Lublin']:first-child")).click();
+        Assert.assertEquals(driver.findElement(By.cssSelector(".firstHeading")).getText(), "Lublin[edytuj]");
 
     }
 
